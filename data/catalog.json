@@ -1,0 +1,185 @@
+[
+  {
+    "id": "8f1c0a10-6b2e-4d3a-9c11-111111111111",
+    "slug": "tiffany-swirl",
+    "name": "Tiffany Swirl",
+    "description": "Trois parfums, un seul prix. La glace tournante de la maison, servie en pot Tiffany, à choisir en Rainbow Candy, Chocolate Brownie ou Caramel Cookie Dough.",
+    "details": "Rainbow Candy mêle le bonbon fruité à la crème. Chocolate Brownie apporte le brownie et le chocolat. Caramel Cookie Dough associe caramel, cookie et bretzel. Le tarif affiché en boutique est de 25 DH le pot. Présence possible de lait, gluten, fruits à coque et soja.",
+    "price": 25,
+    "compareAtPrice": null,
+    "category": "swirls",
+    "stock": 40,
+    "unit": "pot",
+    "featured": true,
+    "published": true,
+    "badge": "25 DH",
+    "inquire": false,
+    "flavors": [
+      "Rainbow Candy",
+      "Chocolate Brownie",
+      "Caramel Cookie Dough"
+    ],
+    "seoTitle": "Tiffany Swirl à Fès — Rainbow, Brownie ou Cookie Dough, 25 DH",
+    "seoDescription": "Commandez le Tiffany Swirl à Fès : Rainbow Candy, Chocolate Brownie ou Caramel Cookie Dough, 25 DH. Retrait boulevard Moulay Hicham ou livraison.",
+    "images": [
+      {
+        "id": "img-swirl-poster",
+        "url": "/media/swirl-flavors.jpg",
+        "alt": "Affiche Tiffany Swirl : Rainbow Candy, Chocolate Brownie et Caramel Cookie Dough à 25 DH",
+        "sort": 0,
+        "fit": "contain"
+      },
+      {
+        "id": "img-swirl-shop",
+        "url": "/media/swirl-close.jpg",
+        "alt": "Pot Tiffany Swirl tenu en boutique, nappé de caramel et de chamallows, devant le bar à sauces",
+        "sort": 1,
+        "fit": "cover"
+      }
+    ],
+    "createdAt": "2026-10-26T09:00:00.000Z",
+    "updatedAt": "2026-10-26T11:20:58.267Z"
+  },
+  {
+    "id": "8f1c0a10-6b2e-4d3a-9c11-222222222222",
+    "slug": "choco-rice",
+    "name": "Choco Rice",
+    "description": "La spécialité croustillante : riz soufflé au chocolat, caramel qui file et cacahuètes, servie dans le gobelet lagon Tiffany.",
+    "details": "Des couches de céréales chocolatées, un cœur de cacahuètes et une nappe de caramel. Le prix affiché sur l'affiche de la boutique est de 16 DH. Présence de lait, gluten, cacao et arachides.",
+    "price": 16,
+    "compareAtPrice": null,
+    "category": "coupes",
+    "stock": 40,
+    "unit": "pot",
+    "featured": true,
+    "published": true,
+    "badge": "16 DH",
+    "inquire": false,
+    "flavors": [],
+    "seoTitle": "Choco Rice Tiffany Fès — la coupe croustillante à 16 DH",
+    "seoDescription": "Choco Rice de Tiffany à Fès : riz soufflé, chocolat, caramel et cacahuètes, 16 DH. Commande en ligne, retrait en face de l'école IPEP3.",
+    "images": [
+      {
+        "id": "img-choco-rice",
+        "url": "/media/choco-rice.jpg",
+        "alt": "Coupe Choco Rice Tiffany, riz soufflé au chocolat et caramel, à 16 DH",
+        "sort": 0,
+        "fit": "contain"
+      }
+    ],
+    "createdAt": "2026-10-26T09:00:00.000Z",
+    "updatedAt": "2026-10-26T09:00:00.000Z"
+  },
+  {
+    "id": "8f1c0a10-6b2e-4d3a-9c11-333333333333",
+    "slug": "maxi-dough",
+    "name": "Maxi Dough",
+    "description": "Le grand format cookie dough : pâte à cookie, biscuit Lotus, bonbons colorés et caramel. Une coupe à partager, ou pas.",
+    "details": "Tiffany présente le Maxi Dough comme une superposition de textures. L'affiche de la maison l'annonce à 36 DH. Présence de lait, gluten, soja, fruits à coque et éventuellement arachides.",
+    "price": 36,
+    "compareAtPrice": null,
+    "category": "coupes",
+    "stock": 30,
+    "unit": "pot",
+    "featured": true,
+    "published": true,
+    "badge": "36 DH",
+    "inquire": false,
+    "flavors": [],
+    "seoTitle": "Maxi Dough Tiffany Fès — cookie dough et Lotus, 36 DH",
+    "seoDescription": "Maxi Dough de Tiffany à Fès : cookie dough, Lotus, bonbons et caramel, 36 DH. Commandez et retirez boulevard Moulay Hicham.",
+    "images": [
+      {
+        "id": "img-maxi-dough",
+        "url": "/media/maxi-dough.jpg",
+        "alt": "Coupe Maxi Dough Tiffany avec cookie dough, biscuits Lotus et caramel, à 36 DH",
+        "sort": 0,
+        "fit": "contain"
+      }
+    ],
+    "createdAt": "2026-10-26T09:00:00.000Z",
+    "updatedAt": "2026-10-26T09:00:00.000Z"
+  },
+  {
+    "id": "8f1c0a10-6b2e-4d3a-9c11-444444444444",
+    "slug": "choco-missu",
+    "name": "Choco Missu",
+    "description": "Pistache, guimauves et coulis rose sur une base crémeuse. La coupe Choco Missu, annoncée à 20 DH.",
+    "details": "Une spécialité Tiffany au goût pistache, avec des morceaux de guimauve et un coulis rose. Tarif affiché : 20 DH. Présence possible de lait, fruits à coque (pistache) et gluten.",
+    "price": 20,
+    "compareAtPrice": null,
+    "category": "coupes",
+    "stock": 30,
+    "unit": "pot",
+    "featured": true,
+    "published": true,
+    "badge": "20 DH",
+    "inquire": false,
+    "flavors": [],
+    "seoTitle": "Choco Missu Tiffany Fès — pistache et guimauve, 20 DH",
+    "seoDescription": "Choco Missu de Tiffany à Fès : pistache, guimauve et coulis rose, 20 DH. Commande en ligne pour un retrait ou une livraison à Fès.",
+    "images": [
+      {
+        "id": "img-choco-missu",
+        "url": "/media/candies.jpg",
+        "alt": "Coupe Choco Missu Tiffany à la pistache et aux guimauves, à 20 DH",
+        "sort": 0,
+        "fit": "contain"
+      }
+    ],
+    "createdAt": "2026-10-26T09:00:00.000Z",
+    "updatedAt": "2026-10-26T09:00:00.000Z"
+  },
+  {
+    "id": "8f1c0a10-6b2e-4d3a-9c11-555555555555",
+    "slug": "coffret-anniversaire",
+    "name": "Coffret anniversaire",
+    "description": "La boîte rose Tiffany, composée en boutique pour un anniversaire à Fès. Le contenu et le montant se confirment avec vous.",
+    "details": "Indiquez dans le message le prénom, le nombre de personnes et les parfums souhaités. La boutique prépare le coffret et confirme le prix avant de le remettre. Paiement au retrait ou à la livraison.",
+    "price": 0,
+    "compareAtPrice": null,
+    "category": "coffrets",
+    "stock": 15,
+    "unit": "coffret",
+    "featured": true,
+    "published": true,
+    "badge": "Sur devis",
+    "inquire": true,
+    "flavors": [],
+    "seoTitle": "Coffret d'anniversaire Tiffany à Fès",
+    "seoDescription": "Coffret d'anniversaire Tiffany à Fès, boîte rose composée sur mesure. Commande en ligne, préparation boulevard Moulay Hicham.",
+    "images": [
+      {
+        "id": "img-box",
+        "url": "/media/coffret-anniversaire.jpg",
+        "alt": "Coffret rose Tiffany, logo menthe à la statue, pour un anniversaire à Fès",
+        "sort": 0,
+        "fit": "contain"
+      }
+    ],
+    "createdAt": "2026-10-26T09:00:00.000Z",
+    "updatedAt": "2026-10-26T09:00:00.000Z"
+  },
+  {
+    "id": "8f1c0a10-6b2e-4d3a-9c11-666666666666",
+    "slug": "tiramisu-signature",
+    "name": "Tiramisu signature",
+    "description": "La ligne de tiramisus Tiffany : frais, crémeux, préparés pour une envie de sucré. Ajoutez les photos et le prix avant de publier.",
+    "details": "Produit masqué du catalogue public. La publication Instagram annonce la ligne, sans tarif visible. Renseignez le prix, ajoutez plusieurs photos, puis publiez.",
+    "price": 0,
+    "compareAtPrice": null,
+    "category": "coupes",
+    "stock": 20,
+    "unit": "pot",
+    "featured": false,
+    "published": false,
+    "badge": "Brouillon",
+    "inquire": false,
+    "flavors": [],
+    "seoTitle": "Tiramisu signature Tiffany Fès",
+    "seoDescription": "Tiramisu signature de Tiffany, confiserie à Fès.",
+    "images": [],
+    "createdAt": "2026-10-26T09:00:00.000Z",
+    "updatedAt": "2026-10-26T09:00:00.000Z"
+  }
+]

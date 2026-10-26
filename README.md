@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tiffany Fès
 
-## Getting Started
+Boutique en ligne de Tiffany, confiserie du boulevard Moulay Hicham à Fès. Les clients commandent, la boutique confirme, le paiement se fait au retrait ou à la livraison.
 
-First, run the development server:
+## Lancer en local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrez http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Espace boutique : http://localhost:3000/admin/login
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Tant que Supabase n'est pas rempli, la connexion est celle du fichier `.env` (`DEMO_ADMIN_EMAIL` et `DEMO_ADMIN_PASSWORD`). Les produits vivent dans `data/catalog.json`, les commandes dans `data/orders.json`.
 
-## Learn More
+## Brancher Supabase
 
-To learn more about Next.js, take a look at the following resources:
+1. Créez un projet sur [supabase.com](https://supabase.com).
+2. SQL Editor : collez et exécutez `supabase/schema.sql`.
+3. Authentication → Users → Add user : un e-mail et un mot de passe pour la boutique.
+4. Project Settings → API : copiez l'URL du projet et la clé `anon` `public`.
+5. Déposez-les dans `.env` :
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+6. Relancez `npm run dev`, connectez-vous avec le compte Supabase, puis sur le tableau de bord cliquez sur **Importer le catalogue** si la base est vide.
+7. Avant la mise en ligne, mettez `NEXT_PUBLIC_SITE_URL` sur le vrai domaine. Ajoutez le téléphone dans `NEXT_PUBLIC_PHONE` et `NEXT_PUBLIC_WHATSAPP` (chiffres, indicatif 212) pour afficher l'appel et WhatsApp.
 
-## Deploy on Vercel
+Les photos déjà dans le projet restent servies par le site. Les nouvelles photos partent dans le bucket `product-images`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Ce que la boutique peut faire
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Créer un produit avec plusieurs photos, un texte alternatif, l'ordre, et le cadrage (affiche entière ou photo pleine).
+- Choisir un rayon, des parfums, un stock, un prix, un badge, une mise en avant.
+- Masquer un produit, ou le passer en « sur devis » (coffrets).
+- Suivre les commandes : nouvelle, confirmée, en préparation, livrée, annulée.
+- Lire les messages du formulaire de contact.
+
+## Prix déjà posés
+
+Ils viennent des affiches publiques de Tiffany : Swirl 25 DH, Choco Rice 16 DH, Maxi Dough 36 DH, Choco Missu 20 DH. Le coffret d'anniversaire est sur devis. Le tiramisu est enregistré mais masqué : ajoutez les photos et le prix, puis publiez-le.
+
+## Mise en ligne
+
+Le projet se déploie sur Vercel (ou un Node qui lance `npm run build` puis `npm start`). En production, Supabase est nécessaire : le disque d'un hébergeur ne garde pas les commandes. Changez aussi le mot de passe démo, même s'il ne sert plus une fois Supabase actif.
