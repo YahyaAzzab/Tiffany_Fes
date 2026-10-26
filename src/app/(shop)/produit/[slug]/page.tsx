@@ -7,9 +7,20 @@ import { ProductStage } from "@/components/product-stage";
 import { getPublished, listPublished } from "@/lib/products";
 import { categoryName, store } from "@/lib/store";
 
+// Cache Components exige au moins un paramètre au build.
+// La base peut être vide tant que le catalogue n'est pas importé.
+const PLACEHOLDER_SLUG = "__placeholder__";
+
 export async function generateStaticParams() {
-  const products = await listPublished();
-  return products.map((product) => ({ slug: product.slug }));
+  try {
+    const products = await listPublished();
+    if (products.length > 0) {
+      return products.map((product) => ({ slug: product.slug }));
+    }
+  } catch {
+    // La table n'existe pas encore : le build doit quand même passer.
+  }
+  return [{ slug: PLACEHOLDER_SLUG }];
 }
 
 export async function generateMetadata({
@@ -18,6 +29,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  if (slug === PLACEHOLDER_SLUG) return { title: "Produit" };
   const product = await getPublished(slug);
   if (!product) return { title: "Produit" };
   const title = product.seoTitle || product.name;
@@ -42,6 +54,7 @@ export default async function ProductPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  if (slug === PLACEHOLDER_SLUG) notFound();
   const product = await getPublished(slug);
   if (!product) notFound();
   const related = (await listPublished())
