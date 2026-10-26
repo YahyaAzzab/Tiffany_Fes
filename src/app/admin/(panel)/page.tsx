@@ -32,10 +32,16 @@ export default async function DashboardPage() {
           </article>
         ))}
       </div>
-      {isSupabaseConfigured() && products.length === 0 ? (
+      {isSupabaseConfigured() && (products.length === 0 || products.some((product) => product.images.length === 0)) ? (
         <form action={importCatalog} className="mt-6 rounded-[1.4rem] bg-blush p-5">
-          <p>Supabase est vide. Importez le catalogue Tiffany déjà préparé.</p>
-          <button className="btn btn-ink mt-3">Importer le catalogue</button>
+          <p>
+            {products.length === 0
+              ? "Supabase est vide. Importez le catalogue Tiffany déjà préparé, photos comprises."
+              : "Des produits n'ont pas encore leurs photos. Relancez l'import pour rattacher les visuels Tiffany."}
+          </p>
+          <button className="btn btn-ink mt-3">
+            {products.length === 0 ? "Importer le catalogue" : "Rattacher les photos"}
+          </button>
         </form>
       ) : null}
       <section className="mt-8">

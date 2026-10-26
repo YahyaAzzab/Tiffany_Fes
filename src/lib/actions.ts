@@ -346,47 +346,97 @@ export async function deleteProduct(formData: FormData) {
   redirect("/admin/produits");
 }
 
+const IMAGE_UUID =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+async function publishSeedImage(url: string, folder: string) {
+  if (!url.startsWith("/media/") && !url.startsWith("/uploads/")) return url;
+  const filePath = path.join(process.cwd(), "public", url.replace(/^\//, ""));
+  let bytes: Buffer;
+  try {
+    bytes = await fs.readFile(/*turbopackIgnore: true*/ filePath);
+  } catch {
+    return url;
+  }
+  const ext = path.extname(filePath).slice(1).toLowerCase();
+  const types: Record<string, string> = {
+    jpg: "image/jpeg",
+    jpeg: "image/jpeg",
+    png: "image/png",
+    webp: "image/webp",
+    gif: "image/gif",
+  };
+  const contentType = types[ext];
+  if (!contentType) return url;
+  const supabase = await createSupabaseServer();
+  const objectPath = `${folder}/${randomUUID()}.${ext === "jpeg" ? "jpg" : ext}`;
+  const { error } = await supabase.storage
+    .from("product-images")
+    .upload(objectPath, bytes, { contentType, upsert: false });
+  if (error) return url;
+  return supabase.storage.from("product-images").getPublicUrl(objectPath).data.publicUrl;
+}
+
 export async function importCatalog(): Promise<void> {
   await assertAdmin();
   if (!isSupabaseConfigured()) return;
   const supabase = await createSupabaseServer();
-  const { count } = await supabase.from("products").select("id", { count: "exact", head: true });
-  if ((count ?? 0) > 0) return;
   const products = await readProducts();
   if (!products.length) return;
-  const rows = products.map((product) => ({
-    id: product.id,
-    slug: product.slug,
-    name: product.name,
-    description: product.description,
-    details: product.details,
-    price: product.price,
-    compare_at_price: product.compareAtPrice,
-    category: product.category,
-    stock: product.stock,
-    unit: product.unit,
-    featured: product.featured,
-    published: product.published,
-    badge: product.badge,
-    inquire: product.inquire,
-    flavors: product.flavors,
-    seo_title: product.seoTitle,
-    seo_description: product.seoDescription,
-    created_at: product.createdAt,
-    updated_at: product.updatedAt,
-  }));
-  const { error } = await supabase.from("products").insert(rows);
-  if (error) throw new Error(error.message);
-  const images = products.flatMap((product) =>
-    product.images.map((image) => ({
-      id: image.id,
-      product_id: product.id,
-      url: image.url,
-      alt: image.alt,
-      sort: image.sort,
-      fit: image.fit,
-    })),
-  );
+
+  const { data: existing, error: existingError } = await supabase.from("products").select("id, slug");
+  if (existingError) throw new Error(existingError.message);
+  const bySlug = new Map((existing ?? []).map((row) => [row.slug as string, row.id as string]));
+
+  const missing = products.filter((product) => !bySlug.has(product.slug));
+  if (missing.length) {
+    const rows = missing.map((product) => ({
+      id: product.id,
+      slug: product.slug,
+      name: product.name,
+      description: product.description,
+      details: product.details,
+      price: product.price,
+      compare_at_price: product.compareAtPrice,
+      category: product.category,
+      stock: product.stock,
+      unit: product.unit,
+      featured: product.featured,
+      published: product.published,
+      badge: product.badge,
+      inquire: product.inquire,
+      flavors: product.flavors,
+      seo_title: product.seoTitle,
+      seo_description: product.seoDescription,
+      created_at: product.createdAt,
+      updated_at: product.updatedAt,
+    }));
+    const { error } = await supabase.from("products").insert(rows);
+    if (error) throw new Error(error.message);
+    for (const product of missing) bySlug.set(product.slug, product.id);
+  }
+
+  const { data: imageRows, error: imageReadError } = await supabase
+    .from("product_images")
+    .select("product_id");
+  if (imageReadError) throw new Error(imageReadError.message);
+  const withPhotos = new Set((imageRows ?? []).map((row) => row.product_id as string));
+
+  const images = [];
+  for (const product of products) {
+    const productId = bySlug.get(product.slug);
+    if (!productId || withPhotos.has(productId) || product.images.length === 0) continue;
+    for (const [index, image] of product.images.entries()) {
+      images.push({
+        id: IMAGE_UUID.test(image.id) ? image.id : randomUUID(),
+        product_id: productId,
+        url: await publishSeedImage(image.url, productId),
+        alt: image.alt,
+        sort: image.sort ?? index,
+        fit: image.fit,
+      });
+    }
+  }
   if (images.length) {
     const { error: imageError } = await supabase.from("product_images").insert(images);
     if (imageError) throw new Error(imageError.message);
