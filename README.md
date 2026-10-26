@@ -20,12 +20,12 @@ Tant que Supabase n'est pas rempli, la connexion est celle du fichier `.env` (`D
 1. Créez un projet sur [supabase.com](https://supabase.com).
 2. SQL Editor : collez et exécutez `supabase/schema.sql`.
 3. Authentication → Users → Add user : un e-mail et un mot de passe pour la boutique.
-4. Project Settings → API : copiez l'URL du projet et la clé `anon` `public`.
+4. Project Settings → API : copiez l'URL du projet et la clé publique (`publishable`, ou `anon` sur un ancien projet).
 5. Déposez-les dans `.env` :
 
 ```
 NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
 ```
 
 6. Relancez `npm run dev`, connectez-vous avec le compte Supabase, puis sur le tableau de bord cliquez sur **Importer le catalogue** si la base est vide.
